@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 import numpy as np
 
-app = Flask(__name__)
-
+application = Flask(__name__)
+app = application
 # Load the model
 model = pickle.load(open('model.pkl', 'rb'))
 
@@ -33,4 +33,4 @@ def predict():
     return render_template('index.html', prediction=prediction_str)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0")
