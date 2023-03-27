@@ -3,15 +3,15 @@ import pickle
 import numpy as np
 
 application = Flask(__name__)
-app = application
+
 # Load the model
 model = pickle.load(open('model.pkl', 'rb'))
 
-@app.route('/')
+@application.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
+@application.route('/predict', methods=['POST'])
 def predict():
     # Get the data from the POST request
     data = request.form.to_dict()
@@ -33,4 +33,4 @@ def predict():
     return render_template('index.html', prediction=prediction_str)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    application.run(host="0.0.0.0")
